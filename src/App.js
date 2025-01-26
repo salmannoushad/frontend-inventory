@@ -140,7 +140,7 @@ function App() {
             <Routes>
               <Route path="/scanner" element={<><BarcodeScanner onProductSave={addProduct}/><KanbanBoard products={products}/></>} />
               <Route path="/analytics" element={<AnalyticsDashboard />} />
-              <Route path="/" element={<><BarcodeScanner /><KanbanBoard /></>} />
+              <Route path="/" element={<><BarcodeScanner onProductSave={addProduct}/><KanbanBoard products={products}/></>} />
             </Routes>
           </Container>
         </Box>
