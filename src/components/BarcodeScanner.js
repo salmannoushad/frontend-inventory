@@ -78,7 +78,7 @@ function BarcodeScanner({ onProductSave }) {
 
         try {
             const response = await axios.get(
-                `${process.env.REACT_APP_API_BASE_URL}/api/products/${barcode}`
+                `${process.env.REACT_APP_API_BASE_URL}/api/products/product/${barcode}`
             );
             console.log("Product details:", response.data);
 
@@ -115,21 +115,7 @@ function BarcodeScanner({ onProductSave }) {
     return (
         <Container maxWidth="md">
             <Box sx={{ textAlign: "center", mt: 4 }}>
-            <Typography
-    variant="h2"
-    sx={{
-      fontWeight: 700,
-      background: "linear-gradient(45deg, #FF0000, #000000)",
-      WebkitBackgroundClip: "text",
-      color: "transparent",
-      fontSize: "2rem",
-      letterSpacing: "2px",
-      mb: 3,
-      textShadow: "2px 2px 6px rgba(0, 0, 0, 0.3)",
-    }}
-  >
-    Shwapno Inventory Management System
-  </Typography>
+
                 <Typography variant="h4" gutterBottom>
                     Barcode Scanner
                 </Typography>
