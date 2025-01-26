@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import {
   AppBar,
@@ -22,15 +22,21 @@ import KanbanBoard from './components/KanbanBoard';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 
 function App() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
+  const [products, setProducts] = useState([]);
+  
+  const addProduct = (newProduct) => {
+    setProducts((prevProducts) => [...prevProducts, newProduct]);
+  };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const drawerWidth = 240;
+
+
 
   const drawerContent = (
     <Box sx={{ height: '100%', backgroundColor: '#1976d2', color: '#fff' }}>
@@ -132,7 +138,7 @@ function App() {
             }}
           >
             <Routes>
-              <Route path="/scanner" element={<><BarcodeScanner /><KanbanBoard /></>} />
+              <Route path="/scanner" element={<><BarcodeScanner onProductSave={addProduct}/><KanbanBoard products={products}/></>} />
               <Route path="/analytics" element={<AnalyticsDashboard />} />
               <Route path="/" element={<><BarcodeScanner /><KanbanBoard /></>} />
             </Routes>
