@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Barcode-Driven Inventory System with Kanban Board (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is a responsive inventory management system developed using React (or Next.js) for the frontend. It allows users to scan product barcodes to retrieve product details from an external API and manage the inventory via a Kanban board.
 
-In the project directory, you can run:
+### Core Features:
 
-### `npm start`
+1. **Barcode Scanning**:
+    - Users can scan a barcode to fetch product details from the external API.
+    - The product details are displayed on the UI and saved to the MongoDB database under the 'Uncategorized' category.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Kanban Board**:
+    - A responsive Kanban board is used to categorize products.
+    - Users can drag and drop products between categories.
+    - Users can dynamically create new categories.
+    - The UI is fully responsive, ensuring a smooth experience on both mobile and desktop devices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Frontend Features**:
+    - **Barcode Scanning**: The barcode scanner is integrated using a suitable library.
+    - **Drag-and-Drop Kanban Board**: The Kanban board leverages a drag-and-drop library for smooth categorization of products.
+    - **Responsive UI**: The UI is responsive for both mobile and desktop users.
+    - **Analytics**
+    - **Search functionality**
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup and Installation
 
-### `npm run build`
+To run this application locally, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Technologies Used
+- React.js
+- Material-UI
+- dnd-kit
+- tesseract
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Prerequisites
+Ensure you have the following installed:
+- node: v18.20.4
+- npm: 10.7.0
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation:
 
-### `npm run eject`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/salmannoushad/frontend-inventory.git
+   cd frontend-inventory
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Environment Variables
+- Create a .env file in the root directory with the following variables:
+    ```bash
+    REACT_APP_BACKEND_URL=http://localhost:5000
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
+1. Start the development server:
+   ```bash
+   npm run start
+   ```
+2. Open the application in your browser at:
+   ```
+   http://localhost:3000
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Dockerfile for React Frontend with Runtime Environment Variable
 
-## Learn More
+Below is the Dockerfile used to run the React.js application in a containerized environment. It uses the Node.js runtime and allows dynamic configuration of the backend URL via the `REACT_APP_BACKEND_URL` environment variable.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```dockerfile
+FROM node:18-alpine
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+WORKDIR /app
 
-### Code Splitting
+COPY package.json ./
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+RUN npm install
 
-### Analyzing the Bundle Size
+COPY . .
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+EXPOSE 3000
 
-### Making a Progressive Web App
+# Define the environment variable for the backend URL
+ENV REACT_APP_BACKEND_URL=http://localhost:5000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Start the React app
+CMD ["npm", "run", "start"]
+```
 
-### Advanced Configuration
+#Build and Run the Docker Image:
+1. Build the Docker image:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+docker build -t frontend-inventory .
+```
+2. Run the container and pass the REACT_APP_BACKEND_URL value if needed:
 
-### Deployment
+```
+docker run -p 3000:3000 -e REACT_APP_BACKEND_URL=http://api.example.com frontend-inventory
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to contribute or open issues for improvements! Happy coding! 🎉
