@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a responsive inventory management system developed using React (or Next.js) for the frontend. It allows users to scan product barcodes to retrieve product details from an external API and manage the inventory via a Kanban board.
+This project is a responsive inventory management system developed using React for the frontend. It allows users to scan product barcodes to retrieve product details from an external API and manage the inventory via a Kanban board.
 
 ### Core Features:
 
